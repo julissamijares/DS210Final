@@ -1,1 +1,1 @@
-C:\Users\julis\projects\DS210Final\ds210_final\target\debug\ds210_final.exe: C:\Users\julis\projects\DS210Final\ds210_final\src\main.rs
+C:\Users\julis\projects\DS210Final\ds210_final\target\debug\ds210_final.exe: C:\Users\julis\projects\DS210Final\ds210_final\src\graph.rs C:\Users\julis\projects\DS210Final\ds210_final\src\main.rs C:\Users\julis\projects\DS210Final\ds210_final\src\plot.rs
