@@ -48,3 +48,14 @@ pub fn plot_degree_distribution(degrees: &[usize]) -> Result<(), Box<dyn std::er
 
     Ok(())
 }
+
+#[test]
+fn test_plot_degree_distribution() -> Result<(), Box<dyn std::error::Error>> {
+    let degrees = vec![2, 3, 3, 4, 4, 4, 5, 5, 5, 5];
+
+    plot_degree_distribution(&degrees)?;
+
+    assert!(std::path::Path::new(OUT_FILE_NAME).exists());
+
+    Ok(())
+}
