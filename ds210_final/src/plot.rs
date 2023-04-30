@@ -14,13 +14,16 @@ pub fn plot_degree_distribution(degrees: &[usize]) -> Result<(), Box<dyn std::er
 
     root.fill(&WHITE)?;
 
-    let max_degree = degrees.iter().max().unwrap_or(&0) + 1;
+    let max_degree = degree_counts.keys().max().unwrap_or(&0) + 1;
+    let max_count = degree_counts.values().max().unwrap_or(&0) + 1;
+
+
     let mut chart = ChartBuilder::on(&root)
         .x_label_area_size(35)
         .y_label_area_size(40)
         .margin(5)
         .caption("Degree Distribution", ("sans-serif", 50.0))
-        .build_cartesian_2d(0..max_degree, 0..degrees.len())?;
+        .build_cartesian_2d(0..max_degree, 0..max_count)?;
 
     chart
         .configure_mesh()
