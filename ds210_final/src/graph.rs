@@ -6,24 +6,32 @@ pub struct Graph {
 }
 
 impl Graph {
+    // Constructor that returns a new, empty graph  
     pub fn new() -> Self {
         Graph {
             edges: HashMap::new(),
         }
     }
 
+    // Method to add an edge between two nodes in the graph
     pub fn add_edge(&mut self, source: usize, target: usize) {
         self.edges.entry(source).or_insert(Vec::new()).push(target);
         self.edges.entry(target).or_insert(Vec::new()).push(source);
     }
 
+    // Method to get the degree of a node in the graph
     pub fn degree(&self, node: usize) -> usize {
+        // Get the vector of neighbors associated with the given node and return its length, or 0 if the node is not in the graph
         self.edges.get(&node).map_or(0, |neighbors| neighbors.len())
     }
 
+    // Method to get the set of nodes that are neighbors of a node at a distance of 2 in the graph
     pub fn neighbors_at_distance_2(&self, node: usize) -> HashSet<usize> {
         let mut neighbors = HashSet::new();
+    
+        // Get the vector of neighbors associated with the given node
         if let Some(adjacent_nodes) = self.edges.get(&node) {
+            // For each adjacent node, get its vector of neighbors and add them to the HashSet if they are not equal to the given node
             for &adjacent_node in adjacent_nodes {
                 if let Some(second_order_nodes) = self.edges.get(&adjacent_node) {
                     neighbors.extend(second_order_nodes.iter().filter(|&&n| n != node));
@@ -33,6 +41,7 @@ impl Graph {
         neighbors
     }
 
+    // Method to get a vector of all nodes in the graph
     pub fn nodes(&self) -> Vec<usize> {
         self.edges.keys().cloned().collect()
     }
